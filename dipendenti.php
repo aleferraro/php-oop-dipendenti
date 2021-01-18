@@ -8,9 +8,9 @@ Generate la gerarchia di classi in PHP che rappresenta il modello in allegato. L
 //PERSONA
 class Persona {
     
-    public $nome;
-    public $cognome;
-    public $codice_fiscale;
+    protected $nome;
+    protected $cognome;
+    protected $codice_fiscale;
 
     public function __construct($nome, $cognome, $codice_fiscale){
         $this->nome = $nome;
@@ -31,8 +31,8 @@ class Persona {
 //IMPIEGATO
 class Impiegato extends Persona {
 
-    public $codice_impiegato;
-    public $compenso = 0;
+    private $codice_impiegato;
+    protected $compenso = 0;
 
     public function __construct($codice_impiegato, $nome, $cognome, $codice_fiscale){
         parent::__construct($nome, $cognome, $codice_fiscale);
@@ -59,8 +59,8 @@ class Impiegato extends Persona {
 //IMPIEGATO SALARIATO
 class ImpiegatoSalariato extends Impiegato {
 
-    public $giorni_lavorati;
-    public $compenso_giornaliero;
+    private $giorni_lavorati;
+    private $compenso_giornaliero;
 
     public function __construct($giorni, $compenso, $codice_impiegato, $nome, $cognome, $codice_fiscale){
         parent::__construct($codice_impiegato, $nome, $cognome, $codice_fiscale);
@@ -78,8 +78,8 @@ class ImpiegatoSalariato extends Impiegato {
 //IMPIEGATO A ORE
 class ImpiegatoAOre extends Impiegato {
 
-    public $ore_lavorate;
-    public $compenso_orario;
+    private $ore_lavorate;
+    private $compenso_orario;
 
     public function __construct($ore, $compenso, $codice_impiegato, $nome, $cognome, $codice_fiscale){
         parent::__construct($codice_impiegato, $nome, $cognome, $codice_fiscale);
@@ -98,8 +98,8 @@ class ImpiegatoAOre extends Impiegato {
 
 trait Progetto {
 
-    public $nome_progetto;
-    public $commissione_progetto;
+    protected $nome_progetto;
+    protected $commissione_progetto;
 
 }
 
