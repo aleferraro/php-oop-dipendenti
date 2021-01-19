@@ -9,6 +9,12 @@ class Impiegato extends Persona {
     protected $compenso = 0;
 
     public function __construct($init_impiegato){
+
+        if(count($init_impiegato) < 4){
+            throw new Exception("L'oggetto non può essere creato se non sono specificati tutti i parametri! Assicurati di aver specificato: nome, cognome, codice_fiscale, codice_impiegato"
+        );
+        }
+
         parent::__construct(
             $init_impiegato['nome'],
             $init_impiegato['cognome'],

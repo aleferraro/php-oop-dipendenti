@@ -17,7 +17,12 @@ class ImpiegatoSuCommissione extends Impiegato {
     }
 
     public function calcola_compenso(){
-        $this->compenso = $this->commissione_progetto;
+
+        if(!is_numeric($this->commissione_progetto)){
+            throw new Exception('Commissione progetto non è un numero!');
+        } else {
+            $this->compenso = $this->commissione_progetto;
+        }
     }
 
 }

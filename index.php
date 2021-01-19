@@ -2,6 +2,8 @@
 
 /*
 Generate la gerarchia di classi in PHP che rappresenta il modello in allegato. La funzione calcola_compenso deve basarsi sui parametri intrinseci dell'oggetto per generare il valore corretto. La funzione to_string deve stampare in formato stringa il contenuto delle proprieta' dell'oggetto su cui e' stata definita. Attenzione ad utilizzare un Trait laddove necessario....
+
+Aggiornate il codice scritto per l'esercizio di ieri e usate le eccezioni per vincolare / validare l'istanziazione dei nuovi oggetti, facendo rispettare all'utilizzatore delle vostre classi alcune vostre direttive. Nel particolare, inserte nei costruttori delle vostre classi alcune condizioni di validazione ( ad esempio, se un parametro deve essere di un certo tipo [ stringa, intero, ... ] o deve ricadere in un certo range [ solo numeri non negativi, tra 0 e 100, .... ] ) che, nel caso si verifichi un comportamento inaccettabile, lancino una eccezione bloccante. A questo punto, chi ha invocato la costruzione dell'oggetto, deve necessariamente correggere il codice che ha scritto o gestire questa eccezione con un blocco try / catch . Fate poi i vostri test.
 */
 
 
@@ -42,13 +44,19 @@ var_dump($impiegato1);
 //prova impiegato salariato
 
 $impiegato_sal = array_merge($dati_impiegato, [
-    'giorni_lavorati' => 10, 
+    'giorni_lavorati' => 'dieci', 
     'compenso_giornaliero' => 50
 ]);
 
 
 $impiegato2 = new ImpiegatoSalariato($impiegato_sal);
-$impiegato2->calcola_compenso();
+
+try {
+    $impiegato2->calcola_compenso();
+} catch (Exception $e) {
+    echo '<h1>' . $e->getMessage() . '</h1>';
+}
+
 
 $impiegato2->to_string('Impiegato Salariato');
 var_dump($impiegato2);
@@ -64,7 +72,13 @@ $impiegato_ore = array_merge($dati_impiegato, [
 
 
 $impiegato3 = new ImpiegatoAOre($impiegato_ore);
-$impiegato3->calcola_compenso();
+
+try {
+    $impiegato3->calcola_compenso();
+} catch (Exception $e) {
+    echo '<h1>' . $e->getMessage() . '</h1>';
+}
+
 
 $impiegato3->to_string('Impiegato A Ore');
 var_dump($impiegato3);
@@ -80,7 +94,13 @@ $impiegato_prog = array_merge($dati_impiegato, [
 
 
 $impiegato4 = new ImpiegatoSuCommissione($impiegato_prog);
-$impiegato4->calcola_compenso();
+
+try {
+    $impiegato4->calcola_compenso();
+} catch (Exception $e) {
+    echo '<h1>' . $e->getMessage() . '</h1>';
+}
+
 
 $impiegato4->to_string('Impiegato Su Commissione');
 var_dump($impiegato4);

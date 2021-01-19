@@ -16,7 +16,12 @@ class ImpiegatoAOre extends Impiegato {
     }
 
     public function calcola_compenso(){
-        $this->compenso = $this->ore_lavorate * $this->compenso_orario;
+
+        if(!is_numeric($this->ore_lavorate)){
+            throw new Exception('Ore lavorate non è un numero!');
+        } else {
+            $this->compenso = $this->ore_lavorate * $this->compenso_orario;
+        }
     }
 
 }
